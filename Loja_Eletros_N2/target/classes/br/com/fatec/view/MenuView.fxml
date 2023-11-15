@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="935.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.MenuViewController">
+   <children>
+      <MenuBar prefHeight="45.0" prefWidth="993.0" style="-fx-background-color: C3C3C3;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home" />
+          <Menu fx:id="m_unidade" mnemonicParsing="false" onAction="#m_unidade_click" text="Unidade">
+               <items>
+                  <MenuItem fx:id="mi_rel_unidade" mnemonicParsing="false" onAction="#mi_rel_unidade_click" text="Relatório" />
+               </items></Menu>
+          <Menu mnemonicParsing="false" text="Produto">
+               <items>
+                  <MenuItem fx:id="mi_rel_produto" mnemonicParsing="false" onAction="#mi_rel_produto_click" text="Relatório" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Funcionário">
+               <items>
+                  <MenuItem fx:id="mi_rel_funcionario" mnemonicParsing="false" onAction="#mi_rel_funcionario_click" text="Relatório" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Cadastros">
+               <items>
+                  <MenuItem fx:id="mi_funcionario" mnemonicParsing="false" onAction="#mi_funcionario_Click" text="Funcionário" />
+                  <MenuItem fx:id="mi_loja" mnemonicParsing="false" onAction="#mi_loja_Click" text="Loja" />
+                  <MenuItem fx:id="mi_cliente" mnemonicParsing="false" onAction="#mi_cliente_click" text="Cliente" />
+                  <MenuItem fx:id="mi_produto" mnemonicParsing="false" onAction="#mi_produto_Click" text="Produto" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34baab" height="187.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="993.0" />
+   </children>
+</AnchorPane>
