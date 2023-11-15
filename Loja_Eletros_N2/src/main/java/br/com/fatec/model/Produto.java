@@ -21,10 +21,26 @@ public class Produto {
         private String nome;
         private String descricao;
         private boolean voltagem;
+
+    @Override
+    public String toString() {
+        return "Produto{" + "produtoID=" + produtoID + ", nome=" + nome + ", descricao=" + descricao + ", voltagem=" + voltagem + ", preco=" + preco + '}';
+    }
         private double preco;
 
     public int getProdutoID() {
         return produtoID;
+    }
+
+    public Produto() {
+    }
+
+    public Produto(int produtoID, String nome, String descricao, boolean voltagem, double preco) {
+        this.produtoID = produtoID;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.voltagem = voltagem;
+        this.preco = preco;
     }
 
     public void setProdutoID(int produtoID) {

@@ -8,6 +8,7 @@ package br.com.fatec.model;
 import br.com.fatec.Principal;
 import br.com.fatec.controller.Cliente_cadastroController;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,12 +21,12 @@ import javafx.stage.Stage;
  */
 public class Cliente extends Application {
     private String nome;
-    private int cpf;
+    private String cpf;
     private String email;
-    private int telefone;
+    private String telefone;
     private String endereco; 
-    private String unidade;
-    private String funcionario;
+    private int unidadeID;
+    private int funcionarioID;
  
     
     public static Stage tela;
@@ -53,7 +54,6 @@ public class Cliente extends Application {
         tela = t;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -62,11 +62,11 @@ public class Cliente extends Application {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -78,11 +78,11 @@ public class Cliente extends Application {
         this.email = email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -94,48 +94,64 @@ public class Cliente extends Application {
         this.endereco = endereco;
     }
 
-    public String getUnidade() {
-        return unidade;
+    public int getUnidadeID() {
+        return unidadeID;
     }
 
-    public void setUnidade(String unidade) {
-        this.unidade = unidade;
+    public void setUnidadeID(int unidadeID) {
+        this.unidadeID = unidadeID;
     }
 
-    public String getFuncionario() {
-        return funcionario;
+    public int getFuncionarioID() {
+        return funcionarioID;
     }
 
-    public void setFuncionario(String funcionario) {
-        this.funcionario = funcionario;
+    public void setFuncionarioID(int funcionarioID) {
+        this.funcionarioID = funcionarioID;
+
     }
 
+    public static Stage getTela() {
+        return tela;
+    }
+
+    public static void setTela(Stage tela) {
+        Cliente.tela = tela;
+    }
+
+
+    
+    
+    
+    
+    
+    
     @Override
     public String toString() {
-        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", unidade=" + unidade + '}';
+        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", unidade=" + unidadeID + '}';
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 11 * hash + this.cpf;
-        return hash;
-    }
-
-    public Cliente() {
-    }
-
-    public Cliente(String nome, int cpf, String email, int telefone, String endereco, String unidade, String funcionario) {
+    public Cliente(String nome, String cpf, String email, String telefone, String endereco, int unidadeID, int funcionarioID) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.unidade = unidade;
-        this.funcionario = funcionario;
+        this.unidadeID = unidadeID;
+        this.funcionarioID = funcionarioID;
     }
-    
-    
+
+
+
+    public Cliente() {
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.cpf);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -149,11 +165,19 @@ public class Cliente extends Application {
             return false;
         }
         final Cliente other = (Cliente) obj;
-        if (this.cpf != other.cpf) {
+        if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
         return true;
     }
+
+
+
+
+    
+    
+
+
     
     
     

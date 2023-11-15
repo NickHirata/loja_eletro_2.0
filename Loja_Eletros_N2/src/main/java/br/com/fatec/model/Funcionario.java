@@ -28,8 +28,21 @@ public class Funcionario extends Application {
     private double salario; 
     private int lojaID;
 
+    public Funcionario() {
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public Funcionario(String nome, int funcionarioID, String cpf, String cargo, String telefone, double salario, int lojaID) {
+        this.nome = nome;
+        this.funcionarioID = funcionarioID;
+        this.cpf = cpf;
+        this.cargo = cargo;
+        this.telefone = telefone;
+        this.salario = salario;
+        this.lojaID = lojaID;
     }
 
     @Override

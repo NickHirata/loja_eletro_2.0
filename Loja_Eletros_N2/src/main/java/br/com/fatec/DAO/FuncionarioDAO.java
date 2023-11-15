@@ -52,9 +52,67 @@ public class FuncionarioDAO {
         }
      }
      
+     public String buscarNomeFuncionarioPorID(int idFuncionario) {
+        String nomeFuncionario = null; // Valor padrão se não encontrar
+
+        try {
+            Connection conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
+
+            // Consulta SQL para buscar o nome do funcionário pelo ID
+            String query = "SELECT nome FROM cadastrofuncionario WHERE funcionarioID = ?";
+            PreparedStatement ps = conexao.prepareStatement(query);
+            ps.setInt(1, idFuncionario);
+            ResultSet rs = ps.executeQuery();
+
+            // Verificar se há resultados e obter o nome do funcionário
+            if (rs.next()) {
+                nomeFuncionario = rs.getString("nome");
+            }
+
+            // Fechar as conexões
+            rs.close();
+            ps.close();
+            ConexaoBanco.desconectar(conexao);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Lógica de tratamento de exceção conforme necessário
+        }
+
+        return nomeFuncionario;
+    }
+
      
+        // Método para buscar o ID do funcionário pelo nome na tabela cadastrofuncionario, recebe o nome e retorna o id
+    public int buscarIDFuncionarioPorNome(String nomeFuncionario) {
+        int funcionarioID = -1; // Valor padrão se não encontrar
+
+        try {
+            Connection conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
+
+            // Consulta SQL para buscar o ID do funcionário pelo nome
+            String query = "SELECT funcionarioID FROM cadastrofuncionario WHERE nome = ?";
+            PreparedStatement ps = conexao.prepareStatement(query);
+            ps.setString(1, nomeFuncionario);
+            ResultSet rs = ps.executeQuery();
+
+            // Verificar se há resultados e obter o ID do funcionário
+            if (rs.next()) {
+                funcionarioID = rs.getInt("funcionarioID");
+            }
+
+            // Fechar as conexões
+            rs.close();
+            ps.close();
+            ConexaoBanco.desconectar(conexao);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Lógica de tratamento de exceção conforme necessário
+        }
+
+        return funcionarioID;
+    }
      
-     //para combobox
+     //para combobox, no funcionario so tem o id entao essa funcao mostra ao inves do id o nome da unidade pela tb loja
     public List<String> obterUnidadesFuncionarios() {
         List<String> unidades = new ArrayList<>();
         Connection conexao = null;
@@ -86,7 +144,7 @@ public class FuncionarioDAO {
     return unidades;
 }
      
-    
+    // mostra os funcionarios que estao na unidade digitada
     public List<Funcionario> obterFuncionariosPorUnidade(String nomeUnidade) {
         List<Funcionario> funcionarios = new ArrayList<>();
         Connection conexao = null;
@@ -128,43 +186,43 @@ public class FuncionarioDAO {
     }
     
     
-    
-public List<Funcionario> obterDadosFuncionarios() {
-    List<Funcionario> funcionarios = new ArrayList<>();
-    Connection conexao = null;
 
-    try {
-        conexao = ConexaoBanco.conectar();
+    public List<Funcionario> obterDadosFuncionarios() {
+            List<Funcionario> funcionarios = new ArrayList<>();
+            Connection conexao = null;
 
-        if (conexao != null) {
-            String sql = "SELECT DISTINCT * FROM cadastrofuncionario " +
-                         "JOIN loja ON cadastrofuncionario.lojaID = loja.lojaID";
+            try {
+                conexao = ConexaoBanco.conectar();
 
-            try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-                 ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (conexao != null) {
+                    String sql = "SELECT DISTINCT * FROM cadastrofuncionario " +
+                                 "JOIN loja ON cadastrofuncionario.lojaID = loja.lojaID";
 
-                while (resultSet.next()) {
-                    Funcionario funcionario = new Funcionario();
-                    funcionario.setFuncionarioID(resultSet.getInt("funcionarioID"));
-                    funcionario.setNome(resultSet.getString("nome"));
-                    funcionario.setCpf(resultSet.getString("cpf"));
-                    funcionario.setSalario(resultSet.getDouble("salario"));
-                    funcionario.setTelefone(resultSet.getString("telefone"));
-                    funcionario.setLojaID(resultSet.getInt("lojaID"));
+                    try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+                         ResultSet resultSet = preparedStatement.executeQuery()) {
 
-                    funcionarios.add(funcionario);
+                        while (resultSet.next()) {
+                            Funcionario funcionario = new Funcionario();
+                            funcionario.setFuncionarioID(resultSet.getInt("funcionarioID"));
+                            funcionario.setNome(resultSet.getString("nome"));
+                            funcionario.setCpf(resultSet.getString("cpf"));
+                            funcionario.setSalario(resultSet.getDouble("salario"));
+                            funcionario.setTelefone(resultSet.getString("telefone"));
+                            funcionario.setLojaID(resultSet.getInt("lojaID"));
+
+                            funcionarios.add(funcionario);
+                        }
+                    }
                 }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConexaoBanco.desconectar(conexao);
             }
+
+            return funcionarios;
         }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } finally {
-        ConexaoBanco.desconectar(conexao);
-    }
-
-    return funcionarios;
-}
 
     
     
