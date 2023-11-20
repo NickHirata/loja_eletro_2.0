@@ -123,34 +123,34 @@ public class Funcionario_listagemController implements Initializable {
         // Lógica para voltar
     }
 
-private void preencherComboBox() {
-    List<String> unidades = funcionarioDAO.obterUnidadesFuncionarios();
+    private void preencherComboBox() {
+        List<String> unidades = funcionarioDAO.obterUnidadesFuncionarios();
 
-    // Adicione um item vazio na lista de unidades
-    unidades.add(0, "");
+        // Adicione um item vazio na lista de unidades
+        unidades.add(0, "");
 
-    // Configurar a ComboBox
-    cmb_unidades.getItems().addAll(unidades);
+        // Configurar a ComboBox
+        cmb_unidades.getItems().addAll(unidades);
 
-    // Adicione um listener para lidar com a seleção da ComboBox
-    cmb_unidades.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        if (newValue != null && !newValue.isEmpty()) {
-            // Buscar os funcionários da unidade pelo nome da unidade
-            List<Funcionario> funcionariosUnidade = funcionarioDAO.obterFuncionariosPorUnidade(newValue);
+        // Adicione um listener para lidar com a seleção da ComboBox
+        cmb_unidades.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                // Buscar os funcionários da unidade pelo nome da unidade
+                List<Funcionario> funcionariosUnidade = funcionarioDAO.obterFuncionariosPorUnidade(newValue);
 
-            // Atualizar a TableView com os funcionários da unidade selecionada
-            tb_funcionario_lista.getItems().clear();
-            tb_funcionario_lista.getItems().addAll(funcionariosUnidade);
-        } else {
-            // Se a seleção estiver vazia, mostre todos os funcionários de todas as unidades
-            List<Funcionario> todosFuncionarios = funcionarioDAO.obterDadosFuncionarios();
+                // Atualizar a TableView com os funcionários da unidade selecionada
+                tb_funcionario_lista.getItems().clear();
+                tb_funcionario_lista.getItems().addAll(funcionariosUnidade);
+            } else {
+                // Se a seleção estiver vazia, mostre todos os funcionários de todas as unidades
+                List<Funcionario> todosFuncionarios = funcionarioDAO.obterDadosFuncionarios();
 
-            // Atualizar a TableView com todos os funcionários
-            tb_funcionario_lista.getItems().clear();
-            tb_funcionario_lista.getItems().addAll(todosFuncionarios);
-        }
-    });
-}
+                // Atualizar a TableView com todos os funcionários
+                tb_funcionario_lista.getItems().clear();
+                tb_funcionario_lista.getItems().addAll(todosFuncionarios);
+            }
+        });
+    }
 
 
     private void preencherTableView() {
@@ -202,7 +202,7 @@ private void preencherComboBox() {
         alert.setTitle("Confirmação de Exclusão");
         alert.setHeaderText("Excluir Funcionário");
         alert.setContentText("Ao excluir este funcionário, os clientes associados\n"
-                + "ficarão sem vínculo com qualquer funcionário.\n "
+                + "ficarão sem vínculo com qualquer funcionário.\n"
                 + "Deseja prosseguir com a exclusão?");
 
         ButtonType btnExcluir = new ButtonType("Excluir");

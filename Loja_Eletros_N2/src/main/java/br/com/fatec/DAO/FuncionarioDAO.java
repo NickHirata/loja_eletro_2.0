@@ -138,6 +138,7 @@ public class FuncionarioDAO {
                             funcionario.setSalario(resultSet.getDouble("salario"));
                             funcionario.setTelefone(resultSet.getString("telefone"));
                             funcionario.setLojaID(resultSet.getInt("lojaID"));
+                            funcionario.setCargo(resultSet.getString("cargo"));
                             
                             funcionarios.add(funcionario);
                         }
@@ -249,7 +250,53 @@ public class FuncionarioDAO {
     }
 
     
-    
+     public boolean funcionarioExiste(String cpf) {
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conexao = ConexaoBanco.conectar();
+            String sql = "SELECT * FROM funcionarios WHERE cpf = ?";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            rs = stmt.executeQuery();
+
+            return rs.next(); // Retorna true se encontrou um funcionário com o CPF, false caso contrário
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao verificar funcionário: " + ex.getMessage());
+            return false;
+        } finally {
+            ConexaoBanco.desconectar(conexao);
+        }
+    }
+
+    public boolean inserirFuncionario(Funcionario novoFuncionario) {
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conexao = ConexaoBanco.conectar();
+            String sql = "INSERT INTO funcionarios (nome, CPF, cargo, salario, lojaID, telefone) VALUES (?, ?, ?, ?, ?, ?)";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, novoFuncionario.getNome());
+            stmt.setString(2, novoFuncionario.getCpf());
+            stmt.setString(3, novoFuncionario.getCargo());
+            stmt.setDouble(4, novoFuncionario.getSalario());
+            stmt.setInt(5, novoFuncionario.getLojaID());
+            stmt.setString(6, novoFuncionario.getTelefone());
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; // Retorna true se a inserção foi bem-sucedida, false caso contrário
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao inserir funcionário: " + ex.getMessage());
+            return false;
+        } finally {
+            ConexaoBanco.desconectar(conexao);
+        }
+    }
 
 
     

@@ -160,4 +160,36 @@ public class UnidadeDAO {
 
             return todasUnidades;
     }
+        
+        
+        // Método para obter os nomes das unidades sem repetições
+        public List<String> obterNomesUnidades() {
+            List<String> nomesUnidades = new ArrayList<>();
+            Connection conexao = null;
+
+            try {
+                conexao = ConexaoBanco.conectar();
+
+                if (conexao != null) {
+                    String sql = "SELECT DISTINCT nome FROM loja";
+
+                    try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+                         ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                        while (resultSet.next()) {
+                            String nomeUnidade = resultSet.getString("nome");
+                            nomesUnidades.add(nomeUnidade);
+                        }
+                    }
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConexaoBanco.desconectar(conexao);
+            }
+
+            return nomesUnidades;
+        }
+
 }

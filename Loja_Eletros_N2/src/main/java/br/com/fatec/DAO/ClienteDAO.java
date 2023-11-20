@@ -20,42 +20,7 @@ import java.util.List;
  */
 public class ClienteDAO {
     
-     public static void testarConexao() {
-        Connection conexao = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            // Obtenha a conexão do método conectar na classe ConexaoBanco
-            conexao = ConexaoBanco.conectar();
-
-            // Operações com o banco
-            String sql = "SELECT * FROM clientes";
-            stmt = conexao.prepareStatement(sql);
-            rs = stmt.executeQuery();
-
-            // Processar os resultados da consulta
-            while (rs.next()) {
-                int id = rs.getInt("clienteID");
-                String nome = rs.getString("nome");
-                String endereco = rs.getString("endereco");
-                String cpf = rs.getString("cpf");
-                int lojaid = rs.getInt("lojaID");
-                int funcionarioid = rs.getInt("funcionarioID");
-
-                System.out.println("ID: " + id + ", Nome: " + nome + ", Endereço: " + endereco);
-            }
-
-        } catch (Exception ex) {
-            System.out.println("Erro:" + ex.getMessage());
-            System.out.println("Falha na conexão com o banco de dados.");
-        } finally {
-            // Fechando a conexão após a conclusão das operações
-            ConexaoBanco.desconectar(conexao);
-        }
-     }
-     
-     
+ 
      
  // Método para inserir um novo cliente no banco de dados
     public void inserirCliente(Cliente cliente) {
@@ -65,13 +30,14 @@ public class ClienteDAO {
         try {
             conexao = ConexaoBanco.conectar();
 
-            String sql = "INSERT INTO clientes (nome, endereco, cpf, lojaID, funcionarioID) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (nome, endereco, cpf, lojaID, funcionarioID, email) VALUES (?, ?, ?, ?, ?, ?)";
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEndereco());
             stmt.setString(3, cliente.getCpf());
             stmt.setInt(4, cliente.getUnidadeID());
             stmt.setInt(5, cliente.getFuncionarioID());
+            stmt.setString(6, cliente.getEmail());
 
             stmt.executeUpdate();
             System.out.println("Cliente inserido com sucesso!");

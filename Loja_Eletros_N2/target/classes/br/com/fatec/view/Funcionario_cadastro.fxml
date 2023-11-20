@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -30,45 +31,44 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34baab" height="187.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="412.0" layoutX="80.0" layoutY="139.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#466067" height="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
-      <GridPane layoutX="115.0" layoutY="174.0" prefHeight="244.0" prefWidth="706.0">
+      <GridPane layoutX="115.0" layoutY="174.0" prefHeight="244.0" prefWidth="726.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="68.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.0" minWidth="10.0" prefWidth="638.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="110.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.0" minWidth="10.0" prefWidth="385.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.0" minWidth="10.0" prefWidth="86.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.0" minWidth="10.0" prefWidth="203.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="74.0" minHeight="0.0" prefHeight="56.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="lbl_nome" text="Nome" />
             <Label fx:id="lbl_cargo" text="Cargo" GridPane.rowIndex="2" />
-            <Label fx:id="lbl_salario" text="Salario" GridPane.rowIndex="4" />
-            <TextField fx:id="txt_nome" maxWidth="-Infinity" prefHeight="27.0" prefWidth="471.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="cb_unidade" prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="lbl_salario" text="Salario" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="txt_nome" maxWidth="-Infinity" prefHeight="31.0" prefWidth="311.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="cb_unidade" prefHeight="32.0" prefWidth="214.0" style="-fx-background-radius: 25;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lbl_unidade" text="Unidade" GridPane.rowIndex="3" />
-            <TextField fx:id="txt_salario" maxWidth="-Infinity" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txt_salario" maxWidth="-Infinity" prefHeight="25.0" prefWidth="120.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label fx:id="lbl_cpf" text="CPF" GridPane.rowIndex="1" />
-            <TextField fx:id="txt_cpf" maxWidth="-Infinity" prefHeight="27.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txt_cargo" maxWidth="-Infinity" prefHeight="27.0" prefWidth="152.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txt_cpf" maxWidth="-Infinity" prefHeight="31.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txt_cargo" maxWidth="-Infinity" prefHeight="31.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="lbl_nome1" text="Telefone" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txt_telefone" maxWidth="-Infinity" prefHeight="31.0" prefWidth="154.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <HBox layoutX="315.0" layoutY="485.0" prefHeight="31.0" prefWidth="331.0" spacing="50.0">
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-         <children>
-            <Button fx:id="btn_excluir" mnemonicParsing="false" onAction="#btn_excluir_Click" prefHeight="31.0" prefWidth="166.0" text="Excluir" />
-            <Button fx:id="btn_inserir" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="166.0" text="Salvar" />
-         </children>
-      </HBox>
       <Text fill="WHITE" layoutX="230.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Funcionário" wrappingWidth="499.2890625">
          <font>
             <Font size="44.0" />
          </font>
       </Text>
-      <Button fx:id="btn_voltar" layoutX="56.0" layoutY="55.0" mnemonicParsing="false" onAction="#btn_voltar_Click" text="Voltar" />
+      <ImageView fitHeight="59.0" fitWidth="45.0" layoutX="35.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/voltar.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_inserir" layoutX="397.0" layoutY="473.0" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Salvar" />
    </children>
 </AnchorPane>
