@@ -81,7 +81,7 @@ public class FuncionarioDAO {
         return funcionarioID;
     }
      
-     //para combobox, no funcionario so tem o id entao essa funcao mostra ao inves do id o nome da unidade pela tb loja
+     //para combobox, mostra a nome da unidade do funcionario
     public List<String> obterUnidadesFuncionarios() {
         List<String> unidades = new ArrayList<>();
         Connection conexao = null;
@@ -176,6 +176,7 @@ public class FuncionarioDAO {
                             funcionario.setNome(resultSet.getString("nome"));
                             funcionario.setCpf(resultSet.getString("cpf"));
                             funcionario.setSalario(resultSet.getDouble("salario"));
+                            funcionario.setCargo(resultSet.getString("cargo"));
                             funcionario.setTelefone(resultSet.getString("telefone"));
                             funcionario.setLojaID(resultSet.getInt("lojaID"));
 
@@ -193,9 +194,63 @@ public class FuncionarioDAO {
             return funcionarios;
         }
 
+    public void excluirFuncionarioPorCPF(String cpf) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conexao = ConexaoBanco.conectar(); // Obter conexão com o banco de dados
+
+            // Preparar a consulta SQL para excluir o funcionário pelo CPF
+            String sql = "DELETE FROM funcionarios WHERE cpf = ?";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, cpf);
+
+            // Executar a consulta para excluir o funcionário
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            // Lidar com exceções (por exemplo, imprimir o erro)
+            e.printStackTrace();
+            throw e; // Lançar a exceção para tratamento na camada superior
+        } finally {
+            // Fechar os recursos (statement e conexão)
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conexao != null) {
+                conexao.close();
+            }
+        }
+    }
     
     
+        public void atualizarClientesSemFuncionario(int funcionarioID) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conexao = ConexaoBanco.conectar();
+
+            String sql = "UPDATE clientes SET funcionarioID = NULL WHERE funcionarioID = ?";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, funcionarioID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conexao != null) {
+                conexao.close();
+            }
+        }
+    }
+
     
     
+
+
     
 }
