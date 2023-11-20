@@ -191,5 +191,37 @@ public class UnidadeDAO {
 
             return nomesUnidades;
         }
+        
+        
+        
+        
+        public int obterTotalUnidades() {
+            int totalUnidades = 0;
+            Connection conexao = null;
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            try {
+                conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
+
+                // Consulta SQL para contar o total de unidades
+                String query = "SELECT COUNT(*) FROM loja";
+                stmt = conexao.prepareStatement(query);
+                rs = stmt.executeQuery();
+
+                // Se houver resultado na consulta, obter o total de unidades
+                if (rs.next()) {
+                    totalUnidades = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Lógica de tratamento de exceção conforme necessário
+            } finally {
+                // Fechar as conexões
+                ConexaoBanco.desconectar(conexao);
+            }
+
+            return totalUnidades;
+        }
 
 }

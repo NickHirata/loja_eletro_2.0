@@ -51,7 +51,5 @@
          </font>
       </Text>
    </children>
-   <stylesheets>
-      <URL value="@/br/com/fatec/css/combobox_view.css" />
-   </stylesheets>
+
 </AnchorPane>

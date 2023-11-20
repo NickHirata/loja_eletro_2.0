@@ -211,4 +211,36 @@ public class ClienteDAO {
 }
 
     
+    
+    
+ public int obterTotalClientes() {
+        int totalClientes = 0;
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
+
+            // Consulta SQL para contar o total de clientes
+            String query = "SELECT COUNT(*) FROM clientes";
+            stmt = conexao.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            // Se houver resultado na consulta, obter o total de clientes
+            if (rs.next()) {
+                totalClientes = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Lógica de tratamento de exceção conforme necessário
+        } finally {
+            // Fechar as conexões
+            ConexaoBanco.desconectar(conexao);
+        }
+
+        return totalClientes;
+    }
+ 
+ 
 }

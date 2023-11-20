@@ -23,9 +23,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="935.0" style="-fx-background-color: #c3c3c3;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.Loja_cadastroViewController">
-    <stylesheets>
-        <URL value="@/br/com/fatec/css/combobox_view.css" />
-    </stylesheets>
+
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34baab" height="187.0" layoutX="1.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="412.0" layoutX="82.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />

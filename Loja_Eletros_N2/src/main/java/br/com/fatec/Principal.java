@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
+import javafx.scene.layout.VBox;
 
 /**
  * JavaFX Principal
@@ -48,7 +49,11 @@ public class Principal extends Application {
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
         List<Funcionario> funcionarios = funcionarioDAO.obterDadosFuncionarios();
         System.out.println(funcionarios);
+        
+ 
        launch();
+      
+
 
        /*ClienteDAO clienteDAO = new ClienteDAO();
        ClienteDAO.testarConexao();

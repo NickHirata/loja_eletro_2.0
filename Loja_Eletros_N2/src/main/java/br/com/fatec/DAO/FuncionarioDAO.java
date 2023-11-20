@@ -225,52 +225,52 @@ public class FuncionarioDAO {
     }
     
     
-        public void atualizarClientesSemFuncionario(int funcionarioID) throws SQLException {
-        Connection conexao = null;
-        PreparedStatement stmt = null;
+    public void atualizarClientesSemFuncionario(int funcionarioID) throws SQLException {
+    Connection conexao = null;
+    PreparedStatement stmt = null;
 
-        try {
-            conexao = ConexaoBanco.conectar();
+    try {
+        conexao = ConexaoBanco.conectar();
 
-            String sql = "UPDATE clientes SET funcionarioID = NULL WHERE funcionarioID = ?";
-            stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, funcionarioID);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conexao != null) {
-                conexao.close();
-            }
+        String sql = "UPDATE clientes SET funcionarioID = NULL WHERE funcionarioID = ?";
+        stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, funcionarioID);
+        stmt.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw e;
+    } finally {
+        if (stmt != null) {
+            stmt.close();
+        }
+        if (conexao != null) {
+            conexao.close();
         }
     }
+}
 
     
-     public boolean funcionarioExiste(String cpf) {
-        Connection conexao = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+    public boolean funcionarioExiste(String cpf) {
+       Connection conexao = null;
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
 
-        try {
-            conexao = ConexaoBanco.conectar();
-            String sql = "SELECT * FROM funcionarios WHERE cpf = ?";
-            stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, cpf);
-            rs = stmt.executeQuery();
+       try {
+           conexao = ConexaoBanco.conectar();
+           String sql = "SELECT * FROM funcionarios WHERE cpf = ?";
+           stmt = conexao.prepareStatement(sql);
+           stmt.setString(1, cpf);
+           rs = stmt.executeQuery();
 
-            return rs.next(); // Retorna true se encontrou um funcionário com o CPF, false caso contrário
+           return rs.next(); // Retorna true se encontrou um funcionário com o CPF, false caso contrário
 
-        } catch (SQLException ex) {
-            System.out.println("Erro ao verificar funcionário: " + ex.getMessage());
-            return false;
-        } finally {
-            ConexaoBanco.desconectar(conexao);
-        }
-    }
+       } catch (SQLException ex) {
+           System.out.println("Erro ao verificar funcionário: " + ex.getMessage());
+           return false;
+       } finally {
+           ConexaoBanco.desconectar(conexao);
+       }
+   }
 
     public boolean inserirFuncionario(Funcionario novoFuncionario) {
         Connection conexao = null;
@@ -298,6 +298,33 @@ public class FuncionarioDAO {
         }
     }
 
+    public int obterTotalFuncionarios() {
+            int totalFuncionarios = 0;
+            Connection conexao = null;
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
 
+            try {
+                conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
+
+                // Consulta SQL para contar o total de funcionários
+                String query = "SELECT COUNT(*) FROM funcionarios";
+                stmt = conexao.prepareStatement(query);
+                rs = stmt.executeQuery();
+
+                // Se houver resultado na consulta, obter o total de funcionários
+                if (rs.next()) {
+                    totalFuncionarios = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // Lógica de tratamento de exceção conforme necessário
+            } finally {
+                // Fechar as conexões
+                ConexaoBanco.desconectar(conexao);
+            }
+
+            return totalFuncionarios;
+        }
     
 }
