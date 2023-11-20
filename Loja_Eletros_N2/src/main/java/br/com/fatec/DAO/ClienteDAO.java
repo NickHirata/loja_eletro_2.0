@@ -30,7 +30,7 @@ public class ClienteDAO {
             conexao = ConexaoBanco.conectar();
 
             // Operações com o banco
-            String sql = "SELECT * FROM cadastrocliente";
+            String sql = "SELECT * FROM clientes";
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
 
@@ -65,7 +65,7 @@ public class ClienteDAO {
         try {
             conexao = ConexaoBanco.conectar();
 
-            String sql = "INSERT INTO cadastrocliente (nome, endereco, cpf, lojaID, funcionarioID) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (nome, endereco, cpf, lojaID, funcionarioID) VALUES (?, ?, ?, ?, ?)";
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEndereco());
@@ -92,7 +92,7 @@ public class ClienteDAO {
         try {
             conexao = ConexaoBanco.conectar();
 
-            String sql = "DELETE FROM cadastrocliente WHERE cpf = ?";
+            String sql = "DELETE FROM clientes WHERE cpf = ?";
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, cpf);
 
@@ -117,7 +117,7 @@ public class ClienteDAO {
         try {
             conexao = ConexaoBanco.conectar();
 
-            String sql = "SELECT * FROM cadastrocliente";
+            String sql = "SELECT * FROM clientes";
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
 
@@ -150,7 +150,7 @@ public class ClienteDAO {
             Connection conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
 
             // Consulta SQL para verificar a existência do cliente pelo CPF
-            String query = "SELECT clienteID FROM cadastrocliente WHERE cpf = ?";
+            String query = "SELECT clienteID FROM clientes WHERE cpf = ?";
             PreparedStatement ps = conexao.prepareStatement(query);
             ps.setString(1, cpf);
             ResultSet rs = ps.executeQuery();
@@ -182,7 +182,7 @@ public class ClienteDAO {
         try {
             Connection conexao = ConexaoBanco.conectar();
 
-            String query = "SELECT * FROM cadastrocliente WHERE cpf = ?";
+            String query = "SELECT * FROM clientes WHERE cpf = ?";
             PreparedStatement ps = conexao.prepareStatement(query);
             ps.setString(1, cpf);
             ResultSet rs = ps.executeQuery();
@@ -219,7 +219,7 @@ public class ClienteDAO {
     try {
         conexao = ConexaoBanco.conectar();
         if (conexao != null) {
-            String sql = "UPDATE cadastrocliente SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cpf = ?";
+            String sql = "UPDATE clientes SET nome = ?, email = ?, telefone = ?, endereco = ? WHERE cpf = ?";
             ps = conexao.prepareStatement(sql);
 
             ps.setString(1, cliente.getNome());

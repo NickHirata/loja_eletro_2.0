@@ -46,6 +46,13 @@ public class Funcionario_listagemController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         funcionarioDAO = new FuncionarioDAO();
+        
+        // Configurar associação entre colunas e atributos da classe Funcionario
+        tb_codigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        tb_nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tb_cpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tb_salario.setCellValueFactory(new PropertyValueFactory<>("salario"));
+        tb_telefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 
         // Preencher a ComboBox
         preencherComboBox();
@@ -79,7 +86,8 @@ public class Funcionario_listagemController implements Initializable {
             // Atualize a TableView na thread da plataforma JavaFX
             Platform.runLater(() -> {
                 // Limpe os itens existentes na TableView
-                tb_funcionario_lista.getItems().clear();
+                //tb_funcionario_lista.getItems().clear();
+                System.out.println("Tamanho da lista de funcionários: " + funcionarios.size());
 
                 // Adicione os novos itens à TableView
                 tb_funcionario_lista.getItems().addAll(funcionarios);

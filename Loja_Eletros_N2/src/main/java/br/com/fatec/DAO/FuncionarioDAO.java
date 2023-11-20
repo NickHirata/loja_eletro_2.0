@@ -20,38 +20,7 @@ import java.util.List;
  */
 public class FuncionarioDAO {
     
-     public static void testarConexao() {
-        Connection conexao = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            // Obtenha a conexão do método conectar na classe ConexaoBanco
-            conexao = ConexaoBanco.conectar();
-
-            // Operações com o banco
-            String sql = "SELECT * FROM loja";
-            stmt = conexao.prepareStatement(sql);
-            rs = stmt.executeQuery();
-
-            // Processar os resultados da consulta
-            while (rs.next()) {
-                int id = rs.getInt("lojaID");
-                String nome = rs.getString("nome");
-                String endereco = rs.getString("endereco");
-
-                System.out.println("ID: " + id + ", Nome: " + nome + ", Endereço: " + endereco);
-            }
-
-        } catch (Exception ex) {
-            System.out.println("Erro:" + ex.getMessage());
-            System.out.println("Falha na conexão com o banco de dados.");
-        } finally {
-            // Fechando a conexão após a conclusão das operações
-            ConexaoBanco.desconectar(conexao);
-        }
-     }
-     
+          
      public String buscarNomeFuncionarioPorID(int idFuncionario) {
         String nomeFuncionario = null; // Valor padrão se não encontrar
 
@@ -59,7 +28,7 @@ public class FuncionarioDAO {
             Connection conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
 
             // Consulta SQL para buscar o nome do funcionário pelo ID
-            String query = "SELECT nome FROM cadastrofuncionario WHERE funcionarioID = ?";
+            String query = "SELECT nome FROM funcionarios WHERE funcionarioID = ?";
             PreparedStatement ps = conexao.prepareStatement(query);
             ps.setInt(1, idFuncionario);
             ResultSet rs = ps.executeQuery();
@@ -82,7 +51,7 @@ public class FuncionarioDAO {
     }
 
      
-        // Método para buscar o ID do funcionário pelo nome na tabela cadastrofuncionario, recebe o nome e retorna o id
+        // Método para buscar o ID do funcionário pelo nome na tabela funcionarios, recebe o nome e retorna o id
     public int buscarIDFuncionarioPorNome(String nomeFuncionario) {
         int funcionarioID = -1; // Valor padrão se não encontrar
 
@@ -90,7 +59,7 @@ public class FuncionarioDAO {
             Connection conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
 
             // Consulta SQL para buscar o ID do funcionário pelo nome
-            String query = "SELECT funcionarioID FROM cadastrofuncionario WHERE nome = ?";
+            String query = "SELECT funcionarioID FROM funcionarios WHERE nome = ?";
             PreparedStatement ps = conexao.prepareStatement(query);
             ps.setString(1, nomeFuncionario);
             ResultSet rs = ps.executeQuery();
@@ -122,8 +91,8 @@ public class FuncionarioDAO {
 
             if (conexao != null) {
                 String sql = "SELECT DISTINCT loja.nome AS nome_loja " +
-                             "FROM cadastrofuncionario " +
-                             "JOIN loja ON cadastrofuncionario.lojaID = loja.lojaID";
+                             "FROM funcionarios " +
+                             "JOIN loja ON funcionarios.lojaID = loja.lojaID";
 
                 try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
                      ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -153,8 +122,8 @@ public class FuncionarioDAO {
             conexao = ConexaoBanco.conectar();
 
             if (conexao != null) {
-                String sql = "SELECT * FROM cadastrofuncionario " +
-                             "JOIN loja ON cadastrofuncionario.lojaID = loja.lojaID " +
+                String sql = "SELECT * FROM funcionarios " +
+                             "JOIN loja ON funcionarios.lojaID = loja.lojaID " +
                              "WHERE loja.nome = ?";
 
                 try (PreparedStatement preparedStatement = conexao.prepareStatement(sql)) {
@@ -195,8 +164,8 @@ public class FuncionarioDAO {
                 conexao = ConexaoBanco.conectar();
 
                 if (conexao != null) {
-                    String sql = "SELECT DISTINCT * FROM cadastrofuncionario " +
-                                 "JOIN loja ON cadastrofuncionario.lojaID = loja.lojaID";
+                    String sql = "SELECT DISTINCT * FROM funcionarios " +
+                                 "JOIN loja ON funcionarios.lojaID = loja.lojaID";
 
                     try (PreparedStatement preparedStatement = conexao.prepareStatement(sql);
                          ResultSet resultSet = preparedStatement.executeQuery()) {
