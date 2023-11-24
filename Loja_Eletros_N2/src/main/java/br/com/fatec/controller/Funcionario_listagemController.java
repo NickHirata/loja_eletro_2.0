@@ -4,7 +4,9 @@ package br.com.fatec.controller;
 
 import br.com.fatec.DAO.FuncionarioDAO;
 import br.com.fatec.DAO.UnidadeDAO;
+import br.com.fatec.Principal;
 import br.com.fatec.model.Funcionario;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -16,7 +18,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -30,6 +35,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 
 
@@ -61,6 +67,8 @@ public class Funcionario_listagemController implements Initializable {
     
     private FuncionarioDAO funcionarioDAO;
     private FilteredList<Funcionario> filteredData;
+    @FXML
+    private ImageView btn_editar;
  
   
     
@@ -82,6 +90,10 @@ public class Funcionario_listagemController implements Initializable {
         
         btn_lixo.setOnMouseClicked(event -> {
             excluirFuncionarioSelecionado();
+        });
+        
+        btn_editar.setOnMouseClicked(event -> {
+            btn_editar_Click();
         });
        
 
@@ -237,5 +249,51 @@ public class Funcionario_listagemController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void btn_editar_Click() {
+        // Obtém o item selecionado do TableView
+        Funcionario funcionarioSelecionado = tb_funcionario_lista.getSelectionModel().getSelectedItem();
+
+        if (funcionarioSelecionado != null) {
+            // Chama o método para abrir a tela de cadastro com os campos preenchidos e desativados
+            abrirTelaCadastro(funcionarioSelecionado);
+        } else {
+            // Exibe uma mensagem informando para selecionar um funcionário antes de editar
+            // Por exemplo, exibir um alerta
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("Selecione um funcionário para editar.");
+            alert.showAndWait();
+        }
         
+    }
+
+    private void abrirTelaCadastro(Funcionario funcionarioSelecionado) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Principal.class.getResource("view/Funcionario_cadastro.fxml"));
+            Parent root = loader.load();
+
+            // Obtém o controller da tela de cadastro
+            Funcionario_cadastro_ViewController cadastroController = loader.getController();
+
+            // Chama o método no controller da tela de cadastro para configurar os campos
+            cadastroController.configurarCamposEdicao(funcionarioSelecionado);
+            // Obtém o Stage atual da janela de listagem
+            Stage stageListagem = (Stage) btn_editar.getScene().getWindow();
+
+            // Fecha a janela de listagem antes de abrir a tela de cadastro
+            stageListagem.close();
+            // Cria um novo Stage (janela)
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Exibe a tela de cadastro
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 }

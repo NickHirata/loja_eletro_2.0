@@ -51,7 +51,7 @@ public class FuncionarioDAO {
     }
 
      
-        // Método para buscar o ID do funcionário pelo nome na tabela funcionarios, recebe o nome e retorna o id
+    // Método para buscar o ID do funcionário pelo nome na tabela funcionarios, recebe o nome e retorna o id
     public int buscarIDFuncionarioPorNome(String nomeFuncionario) {
         int funcionarioID = -1; // Valor padrão se não encontrar
 
@@ -326,5 +326,63 @@ public class FuncionarioDAO {
 
             return totalFuncionarios;
         }
+    
+    
+    // Método para atualizar o cargo, salário e telefone do funcionário
+    public void atualizarDadosFuncionario(int funcionarioID, String novoCargo, double novoSalario, String novoTelefone) throws SQLException {
+            Connection conexao = null;
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+        try {
+            conexao = ConexaoBanco.conectar();
+
+            String sql = "UPDATE funcionarios SET cargo = ?, salario = ?, telefone = ? WHERE funcionarioid = ?";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, novoCargo);
+            stmt.setDouble(2, novoSalario);
+            stmt.setString(3, novoTelefone);
+            stmt.setInt(4, funcionarioID);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conexao != null) {
+                ConexaoBanco.desconectar(conexao);
+            }
+        }
+    }
+    public int buscarIDFuncionarioPorCPF(String cpf) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int funcionarioID = 0;
+
+        try {
+            conexao = ConexaoBanco.conectar();
+
+            String sql = "SELECT funcionarioid FROM funcionarios WHERE cpf = ?";
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, cpf);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                funcionarioID = rs.getInt("funcionarioid");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            // Feche as conexões e recursos (stmt, rs, conexao) no bloco finally
+        }
+
+        return funcionarioID;
+    }
     
 }

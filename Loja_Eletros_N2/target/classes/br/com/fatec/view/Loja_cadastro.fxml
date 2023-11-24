@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -25,10 +26,10 @@
 <AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="935.0" style="-fx-background-color: #c3c3c3;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.controller.Loja_cadastroViewController">
 
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34baab" height="187.0" layoutX="1.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#34baab" height="187.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="412.0" layoutX="82.0" layoutY="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#466067" height="37.0" layoutX="1.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
-      <GridPane layoutX="112.0" layoutY="175.0" prefHeight="168.0" prefWidth="732.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#466067" height="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="935.0" />
+      <GridPane layoutX="115.0" layoutY="200.0" prefHeight="168.0" prefWidth="732.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="558.0" minWidth="10.0" prefWidth="95.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="736.0" minWidth="10.0" prefWidth="294.0" />
@@ -53,20 +54,16 @@
             <TextField fx:id="txt_email" maxWidth="-Infinity" prefHeight="27.0" prefWidth="249.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <HBox layoutX="341.0" layoutY="404.0" prefHeight="31.0" prefWidth="283.0" spacing="50.0">
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-         <children>
-            <Button fx:id="btn_excluir" mnemonicParsing="false" onAction="#btn_excluir_click" prefHeight="31.0" prefWidth="65.0" text="Excluir" />
-            <Button fx:id="btn_inserir" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="131.0" text="Inserir Funcionário" />
-         </children>
-      </HBox>
-      <Text fill="WHITE" layoutX="314.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Loja" wrappingWidth="328.2890625">
+      <Text fill="WHITE" layoutX="259.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Unidade" wrappingWidth="418.2890625">
          <font>
             <Font size="44.0" />
          </font>
       </Text>
-      <Button fx:id="btn_voltar" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" onAction="#btn_voltar_Click" text="Voltar" />
+      <ImageView fx:id="btn_voltar" fitHeight="59.0" fitWidth="45.0" layoutX="35.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/voltar.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_inserir" layoutX="397.0" layoutY="440.0" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Inserir Funcionário" />
    </children>
 </AnchorPane>
