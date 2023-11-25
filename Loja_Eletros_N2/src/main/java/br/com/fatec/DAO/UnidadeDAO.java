@@ -422,5 +422,35 @@ public class UnidadeDAO {
     }
 
 
+    // Método para obter uma unidade por nome no UnidadeDAO
+    public Unidade obterUnidadePorNome(String nomeUnidade) {
+        Unidade unidade = null;
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conexao = ConexaoBanco.conectar(); // Obter a conexão com o banco de dados
+
+            String query = "SELECT * FROM loja WHERE nome = ?";
+            stmt = conexao.prepareStatement(query);
+            stmt.setString(1, nomeUnidade);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                unidade = new Unidade();
+                unidade.setLojaID(rs.getInt("lojaID"));
+                unidade.setNome(rs.getString("nome"));
+                unidade.setEndereco(rs.getString("endereco"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Trate adequadamente a exceção
+        } finally {
+            ConexaoBanco.desconectar(conexao); // Fechar as conexões
+        }
+
+        return unidade;
+    }
+
 
 }

@@ -51,7 +51,7 @@
       <HBox layoutX="124.0" layoutY="456.0" prefHeight="31.0" prefWidth="410.0" spacing="50.0">
          <children>
             <Button fx:id="btn_inserir" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Adicionar ao Estoque" />
-            <Button fx:id="btn_inserir1" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="183.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Estoque em Trânsito" />
+            <Button fx:id="btn_inserirTemp" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="183.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Estoque em Trânsito" />
          </children>
          <padding>
             <Insets right="10.0" />

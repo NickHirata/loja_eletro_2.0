@@ -58,12 +58,14 @@ public class Produto {
     public static void setTela(Stage tela) {
         Produto.tela = tela;
     }
-        
 
     @Override
     public String toString() {
-        return "Produto{" + "produtoID=" + produtoID + ", nome=" + nome + ", descricao=" + descricao + ", voltagem=" + voltagem + ", preco=" + preco + '}';
+        return "Produto{" + "nome=" + nome + '}';
     }
+        
+
+
 
 
     public int getProdutoID() {
