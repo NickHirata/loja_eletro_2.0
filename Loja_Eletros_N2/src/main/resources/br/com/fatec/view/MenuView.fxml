@@ -35,7 +35,7 @@
             <Menu mnemonicParsing="false" style="-fx-text: white;" text="Cadastros"> 
                <items>
                   <MenuItem fx:id="mi_funcionario" mnemonicParsing="false" onAction="#mi_funcionario_Click" text="Funcionário" />
-                  <MenuItem fx:id="mi_loja" mnemonicParsing="false" onAction="#mi_loja_Click" text="Loja" />
+                  <MenuItem fx:id="mi_loja" mnemonicParsing="false" onAction="#mi_loja_Click" text="Unidade" />
                   <MenuItem fx:id="mi_cliente" mnemonicParsing="false" onAction="#mi_cliente_click" text="Cliente" />
                   <MenuItem fx:id="mi_produto" mnemonicParsing="false" onAction="#mi_produto_Click" text="Produto" />
                </items>

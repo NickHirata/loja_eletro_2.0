@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -34,22 +36,27 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Button fx:id="btn_voltar" layoutX="96.0" layoutY="545.0" mnemonicParsing="false" onAction="#btn_voltar_Click" prefHeight="31.0" prefWidth="69.0" text="Voltar" />
       <TableView fx:id="tb_unidade_lista" layoutX="96.0" layoutY="193.0" prefHeight="333.0" prefWidth="773.0">
         <columns>
-          <TableColumn fx:id="tb_codigo" prefWidth="100.0" text="Código" />
-          <TableColumn fx:id="tb_unidade" minWidth="2.0" prefWidth="180.0" text="Nome do produto" />
-            <TableColumn fx:id="tb_moreInfo" minWidth="0.0" prefWidth="300.0" text="Descrição" />
-            <TableColumn fx:id="tb_codigo1" minWidth="0.0" prefWidth="100.0" text="Quantidade" />
-            <TableColumn fx:id="tb_moreInfo1" minWidth="0.0" prefWidth="100.0" text="Preço" />
+          <TableColumn fx:id="tb_codigo" prefWidth="58.0" text="Código" />
+          <TableColumn fx:id="tb_nome" minWidth="2.0" prefWidth="228.0" text="Nome do produto" />
+            <TableColumn fx:id="tb_descricao" minWidth="0.0" prefWidth="327.0" text="Descrição" />
+            <TableColumn fx:id="tb_quantidade" minWidth="0.0" prefWidth="95.0" text="Quantidade" />
+            <TableColumn fx:id="tb_preco" minWidth="0.0" prefWidth="72.0" text="Preço" />
         </columns>
       </TableView>
-      <ComboBox layoutX="574.0" layoutY="131.0" prefWidth="150.0" />
-      <Text fill="#34baab" layoutX="574.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione a unidade:" wrappingWidth="150.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
+      <ComboBox fx:id="cb_unidade" layoutX="113.0" layoutY="49.0" prefHeight="31.0" prefWidth="278.0" promptText="Selecione a unidade:" style="-fx-background-color: #459A96; -fx-background-radius: 25;" />
+      <ImageView fitHeight="28.0" fitWidth="37.0" layoutX="66.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/filtro.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbl_info" layoutX="137.0" layoutY="544.0" prefHeight="42.0" prefWidth="760.0" text="Quantidade total, soma de todas as unidades" />
+      <ImageView fitHeight="31.0" fitWidth="27.0" layoutX="107.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/icons8-info-26.png" />
+         </image>
+      </ImageView>
    </children>
 
 </AnchorPane>

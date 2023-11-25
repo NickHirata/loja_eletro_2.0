@@ -20,13 +20,51 @@ public class Produto {
         private int produtoID;
         private String nome;
         private String descricao;
-        private boolean voltagem;
+        private String voltagem;
+        private double preco;
+        private int quantidadeTotal;
+        private int qtdNaLoja;
+        private int lojaID;
+
+    public int getQuantidadeTotal() {
+        return quantidadeTotal;
+    }
+
+    public void setQuantidadeTotal(int quantidadeTotal) {
+        this.quantidadeTotal = quantidadeTotal;
+    }
+
+    public int getQtdNaLoja() {
+        return qtdNaLoja;
+    }
+
+    public void setQtdNaLoja(int qtdNaLoja) {
+        this.qtdNaLoja = qtdNaLoja;
+    }
+
+    public int getLojaID() {
+        return lojaID;
+    }
+
+    public void setLojaID(int lojaID) {
+        this.lojaID = lojaID;
+    }
+
+
+    public static Stage getTela() {
+        return tela;
+    }
+
+    public static void setTela(Stage tela) {
+        Produto.tela = tela;
+    }
+        
 
     @Override
     public String toString() {
         return "Produto{" + "produtoID=" + produtoID + ", nome=" + nome + ", descricao=" + descricao + ", voltagem=" + voltagem + ", preco=" + preco + '}';
     }
-        private double preco;
+
 
     public int getProdutoID() {
         return produtoID;
@@ -35,13 +73,20 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int produtoID, String nome, String descricao, boolean voltagem, double preco) {
+    public Produto(int produtoID, String nome, String descricao, String voltagem, double preco, int quantidadeTotal, int qtdNaLoja, int lojaID) {
         this.produtoID = produtoID;
         this.nome = nome;
         this.descricao = descricao;
         this.voltagem = voltagem;
         this.preco = preco;
+        this.quantidadeTotal = quantidadeTotal;
+        this.qtdNaLoja = qtdNaLoja;
+        this.lojaID = lojaID;
     }
+
+
+
+
 
     public void setProdutoID(int produtoID) {
         this.produtoID = produtoID;
@@ -63,11 +108,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public boolean isVoltagem() {
+    public String getVoltagem() {
         return voltagem;
     }
 
-    public void setVoltagem(boolean voltagem) {
+    public void setVoltagem(String voltagem) {
         this.voltagem = voltagem;
     }
 
