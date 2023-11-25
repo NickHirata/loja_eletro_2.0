@@ -25,15 +25,16 @@ import javafx.stage.Stage;
 public class Unidade {
     private int lojaID;
     private String nome;
+    private String telefone;
+    private String endereco; 
+    private String cidade; 
+    private String email;
 
     @Override
     public String toString() {
         return "Unidade{" + "lojaID=" + lojaID + ", nome=" + nome + ", telefone=" + telefone + ", endereco=" + endereco + ", cidade=" + cidade + ", email=" + email + '}';
     }
-    private int telefone;
-    private String endereco; 
-    private String cidade; 
-    private String email;
+
     
     
     
@@ -47,8 +48,8 @@ public class Unidade {
         return new SimpleStringProperty(nome);
     }
 
-    public IntegerProperty telefoneProperty() {
-        return new SimpleIntegerProperty(telefone);
+    public SimpleStringProperty telefoneProperty() {
+        return new SimpleStringProperty(telefone);
     }
     
     
@@ -60,8 +61,7 @@ public class Unidade {
         this.nome = nome;
     }
 
-    public Unidade(int lojaID, String nome, int telefone, String endereco, String cidade, String email) {
-        this.lojaID = lojaID;
+    public Unidade(String nome, String telefone, String endereco, String cidade, String email) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -92,11 +92,11 @@ public class Unidade {
         this.nome = nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

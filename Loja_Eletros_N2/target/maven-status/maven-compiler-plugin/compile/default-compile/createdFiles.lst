@@ -6,11 +6,13 @@ br\com\fatec\DAO\ConexaoBanco.class
 br\com\fatec\DAO\UnidadeDAO.class
 br\com\fatec\controller\Funcionario_cadastro_ViewController.class
 br\com\fatec\controller\Cliente_cadastroController.class
+br\com\fatec\controller\MenuViewController.class
 br\com\fatec\controller\Loja_cadastroViewController.class
 br\com\fatec\DAO\FuncionarioDAO.class
 br\com\fatec\controller\Funcionario_listagemController.class
 br\com\fatec\controller\Produto_cadastroViewController.class
 br\com\fatec\Principal.class
+br\com\fatec\DAO\ProdutoDAO.class
 br\com\fatec\model\Cliente.class
 br\com\fatec\model\Unidade.class
 br\com\fatec\model\Produto.class

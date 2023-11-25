@@ -9,6 +9,7 @@
     import br.com.fatec.DAO.FuncionarioDAO;
     import br.com.fatec.DAO.ProdutoDAO;
     import br.com.fatec.DAO.UnidadeDAO;
+import br.com.fatec.Principal;
     import br.com.fatec.model.Cliente;
     import br.com.fatec.model.Funcionario;
     import br.com.fatec.model.Produto;
@@ -22,7 +23,12 @@
     import javafx.animation.RotateTransition;
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
     import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
     import javafx.scene.control.Label;
     import javafx.scene.control.Menu;
     import javafx.scene.control.MenuItem;
@@ -81,6 +87,8 @@
         private ClienteDAO clienteDAO = new ClienteDAO();
         private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
         private ProdutoDAO produtoDAO = new ProdutoDAO();
+    @FXML
+    private ImageView btn_soma_Estoque;
 
 
    
@@ -93,6 +101,28 @@
                 rotateTransition.setCycleCount(1); // Uma vez
                 rotateTransition.play();
                atualizarTotais();
+            });
+            btn_soma_Estoque.setOnMouseClicked((MouseEvent event) -> {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(Principal.class.getResource("view/Produtos_estoque.fxml"));
+                        Parent root = loader.load();
+                        // Cria um novo Stage (janela)
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+
+                        // Exibe a tela de cadastro
+                        stage.show();
+      
+                    } catch (IOException e) {
+                        // Em caso de erro ao carregar o arquivo FXML, exibe uma mensagem de erro
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("Erro ao abrir janela");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Ocorreu um erro ao abrir a janela de produtos do estoque.");
+                        alert.showAndWait();
+
+                        e.printStackTrace();
+                    }
             });
             // Criar tooltips
             Tooltip tooltipProduto = new Tooltip("Este é o total de produtos");
@@ -217,12 +247,10 @@
         }
 
         // Métodos para exibir e esconder o tooltip do produto
-        @FXML
         public void exibirToolTipProduto() {
 
         }
 
-        @FXML
         public void esconderToolTipProduto() {
 
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -35,20 +36,31 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Button fx:id="btn_voltar" layoutX="96.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_voltar_Click" prefHeight="31.0" prefWidth="69.0" text="Voltar" />
       <TableView fx:id="tb_unidade_lista" layoutX="96.0" layoutY="193.0" prefHeight="333.0" prefWidth="773.0">
         <columns>
-          <TableColumn fx:id="tb_codigo" prefWidth="95.0" text="Cidade" />
-          <TableColumn fx:id="tb_unidade" prefWidth="585.0" text="Nome da unidade" />
-            <TableColumn fx:id="tb_moreInfo" prefWidth="75.0" text="Telefone" />
+          <TableColumn fx:id="tb_codigo" prefWidth="95.0" text="Código" />
+            <TableColumn fx:id="tb_cidade" prefWidth="225.0" text="Cidade" />
+          <TableColumn fx:id="tb_unidade" prefWidth="302.0" text="Nome da unidade" />
+            <TableColumn fx:id="tb_telefone" prefWidth="133.0" text="Telefone" />
         </columns>
       </TableView>
-      <ComboBox layoutX="598.0" layoutY="132.0" prefWidth="150.0" />
-      <Text fill="#34baab" layoutX="598.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione a cidade:" wrappingWidth="270.95574951171875">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <TextField layoutX="748.0" layoutY="132.0" prefHeight="25.0" prefWidth="162.0" promptText="Procure por palavras-chave" />
+      <ImageView fitHeight="28.0" fitWidth="37.0" layoutX="620.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/filtro.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="cmb_cidade" layoutX="677.0" layoutY="49.0" prefHeight="31.0" prefWidth="215.0" promptText="Selecione a cidade" style="-fx-background-radius: 25; -fx-background-color: #459A96;" />
+      <TextField fx:id="txtF_pesquisa" layoutX="96.0" layoutY="49.0" prefHeight="31.0" prefWidth="352.0" promptText="Pesquise por palavra-chave" style="-fx-background-radius: 25;" />
+      <ImageView fitHeight="31.0" fitWidth="47.0" layoutX="59.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/lupa.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btn_lixo" fitHeight="37.0" fitWidth="31.0" layoutX="838.0" layoutY="129.0" onDragDetected="#btn_lixo_Click" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/lixeira.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_moreInfo" layoutX="713.0" layoutY="129.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-radius: 25; -fx-background-color: #34BAAB;" text="More Info" />
    </children>
 </AnchorPane>

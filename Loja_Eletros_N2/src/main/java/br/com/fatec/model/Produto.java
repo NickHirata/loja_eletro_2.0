@@ -110,5 +110,18 @@ public class Produto {
         tela.show();        
 
     }
+    
+        public void start_esto(Stage tela) throws IOException {
+        setStage(tela);
+        
+        var fxmlLoader = new FXMLLoader(Principal.class.getResource("view/Produtos_estoque.fxml"));
+        Parent root = fxmlLoader.load();
+        
+        Scene scene = new Scene(root);
+        
+        tela.setScene(scene);
+        tela.show();        
+
+    }
 
 }

@@ -64,6 +64,6 @@
             <Image url="@../css/img/voltar.png" />
          </image>
       </ImageView>
-      <Button fx:id="btn_inserir" layoutX="397.0" layoutY="440.0" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Inserir Funcionário" />
+      <Button fx:id="btn_inserir" layoutX="397.0" layoutY="440.0" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="31.0" prefWidth="166.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Inserir unidade" />
    </children>
 </AnchorPane>

@@ -48,7 +48,7 @@
             <TableColumn fx:id="tb_loja" prefWidth="90.0" text="ID loja" />
         </columns>
       </TableView>
-      <ComboBox fx:id="cmb_unidades" layoutX="677.0" layoutY="49.0" prefHeight="31.0" prefWidth="171.0" style="-fx-background-radius: 25; -fx-background-color: #459A96;" />
+      <ComboBox fx:id="cmb_unidades" layoutX="677.0" layoutY="49.0" prefHeight="31.0" prefWidth="217.0" promptText="Selecione a unidade" style="-fx-background-radius: 25; -fx-background-color: #459A96;" />
       <ImageView fitHeight="28.0" fitWidth="37.0" layoutX="620.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../css/img/filtro.png" />

@@ -35,9 +35,9 @@ public class Produto_estoqueViewController implements Initializable {
     @FXML
     private TextField txt_qtde;
     @FXML
-    private Button btn_voltar;
-    @FXML
     private Button btn_inserir;
+    @FXML
+    private Button btn_inserir1;
 
     /**
      * Initializes the controller class.
@@ -47,9 +47,6 @@ public class Produto_estoqueViewController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void btn_voltar_Click(ActionEvent event) {
-    }
 
     @FXML
     private void btn_inserir_Click(ActionEvent event) {
