@@ -16,11 +16,14 @@
     import br.com.fatec.model.Unidade;
     import java.io.IOException;
     import java.net.URL;
+import java.util.List;
     import java.util.ResourceBundle;
     import java.util.concurrent.Executors;
     import java.util.concurrent.ScheduledExecutorService;
     import java.util.concurrent.TimeUnit;
     import javafx.animation.RotateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
     import javafx.fxml.FXMLLoader;
@@ -32,10 +35,18 @@
     import javafx.scene.control.Label;
     import javafx.scene.control.Menu;
     import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
     import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
     import javafx.scene.image.ImageView;
     import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
     import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
     import javafx.stage.Stage;
     import javafx.util.Duration;
 
@@ -89,11 +100,18 @@
         private ProdutoDAO produtoDAO = new ProdutoDAO();
     @FXML
     private ImageView btn_soma_Estoque;
+    @FXML
+    private ImageView btn_mostrar_clientes;
+
 
 
    
         @Override
         public void initialize(URL url, ResourceBundle rb) {
+            btn_mostrar_clientes.setOnMouseClicked((MouseEvent event) -> {
+                btn_mostrar_clientes_Click();
+            });
+
             iniciarAtualizacaoAutomatica();
             btn_reload.setOnMouseClicked((MouseEvent event) -> {
                 RotateTransition rotateTransition = new RotateTransition(Duration.seconds(1), btn_reload);
@@ -268,4 +286,52 @@
         }
 
 
-    }   
+   
+    @FXML
+    private void btn_mostrar_clientes_Click() {
+            exibirTabelaClientes();
+    }
+
+
+
+    @FXML
+    private void exibirTabelaClientes() {
+        List<Cliente> listaClientes = clienteDAO.buscarTodosClientes(); // Obtém os clientes do banco de dados
+        if (!listaClientes.isEmpty()) {
+            // Criando uma área de texto para exibir os detalhes dos clientes
+            TextArea textArea = new TextArea();
+            textArea.setEditable(false);
+            textArea.setWrapText(true);
+            textArea.setPrefColumnCount(100); // Defina o número de colunas conforme necessário
+            textArea.setPrefRowCount(50); // Defina o número de linhas conforme necessário
+
+            // Adicionando os detalhes dos clientes à área de texto
+            StringBuilder detalhesClientes = new StringBuilder();
+            detalhesClientes.append("Lista de Clientes:\n");
+            for (Cliente cliente : listaClientes) {
+                detalhesClientes.append("Nome: ").append(cliente.getNome())
+                                .append(" | CPF: ").append(cliente.getCpf())
+                                .append(" | Endereço: ").append(cliente.getEndereco())
+                                .append(" | ID Unidade: ").append(cliente.getUnidadeID())
+                                .append(" | ID Funcionário: ").append(cliente.getFuncionarioID())
+                                .append("\n\n");
+            }
+            textArea.setText(detalhesClientes.toString());
+
+            // Criando um layout VBox para conter a área de texto com uma barra de rolagem
+            VBox vBox = new VBox(textArea);
+            ScrollPane scrollPane = new ScrollPane(vBox);
+
+            // Criando um novo Stage
+            Stage stage = new Stage();
+            stage.setTitle("Detalhes dos Clientes");
+            stage.initModality(Modality.APPLICATION_MODAL); // Para bloquear interações com outras janelas
+            stage.setScene(new Scene(scrollPane, 800, 300)); // Defina o tamanho conforme necessário
+            stage.show();
+        } else {
+            // Se não houver clientes, mostrar uma mensagem ou realizar alguma ação
+            System.out.println("Não há clientes cadastrados.");
+        }
+    }
+    
+ }

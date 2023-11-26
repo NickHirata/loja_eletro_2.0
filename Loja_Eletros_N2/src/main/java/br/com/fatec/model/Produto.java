@@ -26,6 +26,15 @@ public class Produto {
         private int qtdNaLoja;
         private int lojaID;
 
+    public Produto(String nome, String descricao, String voltagem, double preco) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.voltagem = voltagem;
+        this.preco = preco;
+
+    }
+
+
     public int getQuantidadeTotal() {
         return quantidadeTotal;
     }

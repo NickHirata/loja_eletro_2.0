@@ -37,7 +37,6 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <Button fx:id="btn_voltar" layoutX="96.0" layoutY="545.0" mnemonicParsing="false" onAction="#btn_voltar_Click" prefHeight="31.0" prefWidth="69.0" text="Voltar" />
       <TableView fx:id="tb_funcionario_lista" depthTest="ENABLE" layoutX="96.0" layoutY="193.0" prefHeight="333.0" prefWidth="773.0">
         <columns>
             <TableColumn fx:id="tb_cpf" prefWidth="114.0" text="CPF" />

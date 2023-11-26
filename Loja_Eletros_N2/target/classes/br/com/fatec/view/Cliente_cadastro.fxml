@@ -65,7 +65,5 @@
       </Text>
       <Button fx:id="btn_inserir" layoutX="391.0" layoutY="471.0" mnemonicParsing="false" onAction="#btn_inserir_Click" prefHeight="34.0" prefWidth="184.0" style="-fx-background-color: #34BAAB; -fx-background-radius: 25;" text="Inserir cliente" />
    </children>
-   <stylesheets>
-      <URL value="@/br/com/fatec/css/combobox_view.css" />
-   </stylesheets>
+
 </AnchorPane>

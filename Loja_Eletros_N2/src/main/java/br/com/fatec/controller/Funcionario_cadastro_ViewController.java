@@ -9,15 +9,11 @@ import br.com.fatec.DAO.FuncionarioDAO;
 import br.com.fatec.DAO.UnidadeDAO;
 import br.com.fatec.Principal;
 import br.com.fatec.model.Funcionario;
-import br.com.fatec.model.Unidade;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -115,7 +111,7 @@ public void initialize(URL url, ResourceBundle rb) {
             if (txt_cargo.getText().isEmpty() ||
                     txt_salario.getText().isEmpty() ||
                     txt_telefone.getText().isEmpty()){
-                mostrarMensagemErro("Por favor, preencha todos os campos.");
+                mostrarMensagemErro("Por favor, preencha todos os campos para atualizar.");
                 return;
             }
 
@@ -196,7 +192,6 @@ public void initialize(URL url, ResourceBundle rb) {
     
     
     private void cadastrarFuncionario() {
-        mostrarMensagemErro("Cadastrar");
         // Verifica se todos os campos obrigatórios estão preenchidos
         if (txt_nome.getText().isEmpty() || txt_cpf.getText().isEmpty() || txt_cargo.getText().isEmpty() ||
                 txt_salario.getText().isEmpty() || cb_unidade.getValue() == null) {

@@ -58,7 +58,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="645.0" layoutY="235.0" text="Total de produtos" textFill="#34baab">
+      <Label layoutX="660.0" layoutY="235.0" text="Total de clientes" textFill="#34baab">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -82,12 +82,12 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_produtos" layoutX="705.0" layoutY="302.0" text="0" textFill="#34baab">
+      <Label fx:id="lbl_produtos" layoutX="713.0" layoutY="515.0" text="0" textFill="#34baab">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_clientes" layoutX="704.0" layoutY="522.0" text="0" textFill="#34baab">
+      <Label fx:id="lbl_clientes" layoutX="713.0" layoutY="302.0" text="0" textFill="#34baab">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -111,6 +111,11 @@
       <ImageView fx:id="btn_soma_Estoque" fitHeight="39.0" fitWidth="37.0" layoutX="780.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../css/img/icons8-soma-64.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btn_mostrar_clientes" fitHeight="31.0" fitWidth="47.0" layoutX="621.0" layoutY="280.0" onDragDetected="#btn_mostrar_clientes_Click" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../css/img/lupa.png" />
          </image>
       </ImageView>
    </children>

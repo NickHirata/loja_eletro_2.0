@@ -136,64 +136,65 @@
                 stage.show();
         }
 
-        private void cadastrarCliente() {
-                // Verifica se todos os campos obrigatórios estão preenchidos
-                if (txtNome.getText().isEmpty() || txt_cpf.getText().isEmpty() || txt_telefone.getText().isEmpty() ||
-                        txt_endereco.getText().isEmpty() || cb_unidade.getValue() == null || cb_funcionario.getValue() == null) {
-                    mostrarMensagemErro("Por favor, preencha todos os campos obrigatórios.");
-                    return;
-                }
+    private void cadastrarCliente() {
+        // Verifica se todos os campos obrigatórios estão preenchidos
+        if (txtNome.getText().isEmpty() || txt_cpf.getText().isEmpty() || txt_telefone.getText().isEmpty() ||
+                txt_endereco.getText().isEmpty() || cb_unidade.getValue() == null || cb_funcionario.getValue() == null) {
+            mostrarMensagemErro("Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
 
-                // Verifica se o CPF contém apenas números
-                String cpf = txt_cpf.getText().trim();
-                if (!cpf.matches("\\d+")) {
-                    mostrarMensagemErro("O CPF deve conter apenas números.");
-                    return;
-                }
+        // Verifica se o CPF contém apenas números
+        String cpf = txt_cpf.getText().trim();
+        if (!cpf.matches("\\d+")) {
+            mostrarMensagemErro("O CPF deve conter apenas números.");
+            return;
+        }
 
-                // Verifica se o telefone contém apenas números
-                String telefone = txt_telefone.getText().trim();
-                if (!telefone.matches("\\d+")) {
-                    mostrarMensagemErro("O telefone deve conter apenas números.");
-                    return;
-                }
+        // Verifica se o telefone contém apenas números
+        String telefone = txt_telefone.getText().trim();
+        if (!telefone.matches("\\d+")) {
+            mostrarMensagemErro("O telefone deve conter apenas números.");
+            return;
+        }
 
-                // Verifica se o cliente já está cadastrado pelo CPF
-                if (clienteDAO != null && clienteDAO.clienteExiste(cpf)) {
-                    mostrarMensagemErro("Cliente com este CPF já existe.");
-                    return;
-                }
+        // Verifica se o cliente já está cadastrado pelo CPF
+        if (clienteDAO != null && clienteDAO.clienteExiste(cpf)) {
+            mostrarMensagemErro("Cliente com este CPF já existe.");
+            return;
+        }
 
-                // Cria um novo cliente
-                Cliente novoCliente = new Cliente();
-                novoCliente.setNome(txtNome.getText());
-                novoCliente.setCpf(txt_cpf.getText());
-                novoCliente.setEmail(txt_email.getText());
-                novoCliente.setTelefone(txt_telefone.getText());
-                novoCliente.setEndereco(txt_endereco.getText());
+        // Cria um novo cliente
+        Cliente novoCliente = new Cliente();
+        novoCliente.setNome(txtNome.getText());
+        novoCliente.setCpf(txt_cpf.getText());
+        novoCliente.setEmail(txt_email.getText());
+        novoCliente.setTelefone(txt_telefone.getText());
+        novoCliente.setEndereco(txt_endereco.getText());
 
-                String nomeUnidadeSelecionada = cb_unidade.getValue();
-                int unidadeID = -1; // Valor padrão se não encontrar
+        String nomeUnidadeSelecionada = cb_unidade.getValue();
+        int unidadeID = -1; // Valor padrão se não encontrar
 
-                String nomeFuncionarioSelecionado = cb_funcionario.getValue();
-                int funcionarioID = -1; // Valor padrão se não encontrar
+        String nomeFuncionarioSelecionado = cb_funcionario.getValue();
+        int funcionarioID = -1; // Valor padrão se não encontrar
 
-                try {
-                    if (clienteDAO != null) {
-                        unidadeID = unidadeDAO.buscarIDUnidadePorNome(nomeUnidadeSelecionada);
-                        funcionarioID = funcionarioDAO.buscarIDFuncionarioPorNome(nomeFuncionarioSelecionado);
-                        novoCliente.setUnidadeID(unidadeID);
-                        novoCliente.setFuncionarioID(funcionarioID);
-                        clienteDAO.inserirCliente(novoCliente);
-                        limparCampos();
-
-                    } else {
-                        throw new Exception("ClienteDAO não inicializado.");
-                    }
-                } catch (Exception e) {
-                    mostrarMensagemErro("Erro ao acessar o ClienteDAO: " + e.getMessage());
-                }
+        try {
+            if (clienteDAO != null) {
+                unidadeID = unidadeDAO.buscarIDUnidadePorNome(nomeUnidadeSelecionada);
+                funcionarioID = funcionarioDAO.buscarIDFuncionarioPorNome(nomeFuncionarioSelecionado);
+                novoCliente.setUnidadeID(unidadeID);
+                novoCliente.setFuncionarioID(funcionarioID);
+                clienteDAO.inserirCliente(novoCliente);
+                limparCampos();
+                mostrarMensagemSucesso("Cliente cadastrado com sucesso!"); // Adiciona a mensagem de sucesso
+            } else {
+                throw new Exception("ClienteDAO não inicializado.");
             }
+        } catch (Exception e) {
+            mostrarMensagemErro("Erro ao acessar o ClienteDAO: " + e.getMessage());
+        }
+    }
+
 
 
 

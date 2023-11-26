@@ -41,8 +41,6 @@ import javafx.stage.Stage;
 
 public class Funcionario_listagemController implements Initializable {
 
-    @FXML
-    private Button btn_voltar;
 
     @FXML
     private ComboBox<String> cmb_unidades;
@@ -130,10 +128,6 @@ public class Funcionario_listagemController implements Initializable {
 
     }
 
-    @FXML
-    private void btn_voltar_Click(ActionEvent event) {
-        // Lógica para voltar
-    }
 
     private void preencherComboBox() {
         List<String> unidades = funcionarioDAO.obterUnidadesFuncionarios();
